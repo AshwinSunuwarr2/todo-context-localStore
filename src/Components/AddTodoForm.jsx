@@ -54,13 +54,13 @@ function AddTodoForm() {
       <input
         type="text"
         placeholder="Write todos.."
-        className="border-[1px] border-black rounded-md py-1 px-2"
+        className="border-[1px] border-black rounded-md py-2 px-2 w-[240px] md:w-[320px] lg:w-[350px]"
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
       />
       <button
         type="submit"
-        className="bg-red-600/80 text-white px-3 py-1 rounded-sm hover:bg-red-500"
+        className="bg-red-500 font-semibold text-white px-4 py-2 rounded-lg hover:bg-red-600"
       >
         Add
       </button>

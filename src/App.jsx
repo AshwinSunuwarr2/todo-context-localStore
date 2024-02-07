@@ -111,16 +111,20 @@ function App() {
     <TodoProvider
       value={{ todos, addTodo, updateTodo, deleteTodo, toggleCompleted }}
     >
-      <h1>TODOs</h1>
-      <div>
-        <AddTodoForm />
-      </div>
-      <div>
-        {todos.map((todo) => (
-          <div key={todo.id}>
-            <Todos todo={todo} />
-          </div>
-        ))}
+      <h1 className="text-center py-2 text-[2rem] text-orange-600/80 font-mono font-bold">
+        TODOs
+      </h1>
+      <div className="flex flex-col justify-center items-center">
+        <div>
+          <AddTodoForm />
+        </div>
+        <div className="mt-4">
+          {todos.map((todo) => (
+            <div key={todo.id}>
+              <Todos todo={todo} />
+            </div>
+          ))}
+        </div>
       </div>
     </TodoProvider>
   );

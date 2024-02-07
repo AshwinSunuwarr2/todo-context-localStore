@@ -65,33 +65,50 @@ function Todos({ todo }) {
     toggleCompleted(todo.id);
   };
 
-  const handleEdit = (e) => {
+  const handleEdit = () => {
     updateTodo(todo.id, { ...todo, todo: todoMsg });
     setIsEditable(!isEditable);
   };
 
   return (
-    <div className="flex items-center gap-2 shadow-lg w-fit rounded-md px-2 mt-2 py-1 bg-orange-400">
-      <input type="checkbox" checked={todo.completed} onChange={isComplete} />
+    <div className="flex justify-between items-center gap-2 shadow-lg w-[310px] rounded-md px-2 mt-2 py-1 bg-orange-400 md:w-[38rem] lg:w-[40rem]">
       <input
-        type="text"
+        type="checkbox"
+        checked={todo.completed}
+        onChange={isComplete}
+        className="w-4 h-4 cursor-pointer"
+      />
+
+      <input
+        type="textarea"
         value={todoMsg}
         readOnly={!isEditable}
         onChange={(e) => setTodoMsg(e.target.value)}
         className={`${
           isEditable ? "border-black/50  bg-white " : ""
-        } rounded-md px-1 border-[1px] bg-pink-200/40 ${
-          todo.completed ? "line-through" : ""
-        }`}
+        } rounded-md px-1 border-[1px] border-white/0 outline-none bg-pink-200/40 transition duration-300 ease-in ${
+          todo.completed ? "line-through bg-violet-100" : ""
+        } w-full text-lg py-[5px] break-words`}
       />
-      <button
-        onClick={handleEdit}
-        className={`${todo.completed ? "line-through" : ""}`}
-        disabled={todo.completed}
-      >
-        {isEditable ? "🗃️" : "🖊️"}
-      </button>
-      <button onClick={() => deleteTodo(todo.id)}>❌</button>
+
+      <div className="gap-2 flex">
+        <button
+          onClick={handleEdit}
+          className={`${
+            todo.completed ? "line-through bg-violet-400/90" : ""
+          } shadow-md rounded-md bg-white/40 hover:bg-green-400/80 transition duration-300 ease-in h-7 w-7`}
+          disabled={todo.completed}
+        >
+          {isEditable ? "🗃️" : "🖊️"}
+        </button>
+
+        <button
+          onClick={() => deleteTodo(todo.id)}
+          className="transition duration-300 ease-in drop-shadow-md bg-white/40 rounded-md hover:bg-black/60  h-7 w-7"
+        >
+          ❌
+        </button>
+      </div>
     </div>
   );
 }
