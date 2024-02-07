@@ -70,7 +70,7 @@
 
 // export default App;
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AddTodoForm, Todos } from "./Components";
 
 import { TodoProvider } from "./Context";
@@ -94,6 +94,18 @@ function App() {
       )
     );
   };
+
+  useEffect(() => {
+    const todos = JSON.parse(localStorage.getItem("todos"));
+
+    if (todos && todos.length > 0) {
+      setTodos(todos);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <TodoProvider
